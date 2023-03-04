@@ -8,13 +8,19 @@ type Props = Omit<ComponentProps<'img'>, 'className'> & {
 };
 
 export const Image: FC<Props> = ({ fill, ...rest }) => {
+  const { src = '' } = rest;
+  const avifSrc = src.replace(/\.jpg$/, '.avif');
+
   return (
-    <img
-      className={classNames(styles.container(), {
-        [styles.container__fill()]: fill === true,
-      })}
-      loading="lazy"
-      {...rest}
-    />
+    <picture>
+      <source srcSet={avifSrc} type="image/avif" />
+      <img
+        className={classNames(styles.container(), {
+          [styles.container__fill()]: fill === true,
+        })}
+        loading="lazy"
+        {...rest}
+      />
+    </picture>
   );
 };
