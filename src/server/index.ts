@@ -8,7 +8,7 @@ import logger from 'koa-logger';
 import route from 'koa-route';
 import send from 'koa-send';
 import session from 'koa-session';
-import serve from 'koa-static';
+import serve from 'koa-static-cache';
 
 import type { Context } from './context';
 import { dataSource } from './data_source';
@@ -56,8 +56,8 @@ async function init(): Promise<void> {
     }),
   );
 
-  app.use(serve(rootResolve('dist')));
-  app.use(serve(rootResolve('public')));
+  app.use(serve(rootResolve('dist'), { maxAge: 24 * 60 * 60 }));
+  app.use(serve(rootResolve('public'), { maxAge: 24 * 60 * 60 }));
 
   app.use(async (ctx) => await send(ctx, rootResolve('/dist/index.html')));
 
