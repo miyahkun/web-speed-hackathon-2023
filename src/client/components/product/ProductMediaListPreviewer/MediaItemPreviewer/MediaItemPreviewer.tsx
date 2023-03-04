@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
 
+
 import type { MediaFileFragmentResponse } from '../../../../graphql/fragments';
 import { getMediaType } from '../../../../utils/get_media_type';
 import { DeviceType, GetDeviceType } from '../../../foundation/GetDeviceType';
@@ -12,8 +13,9 @@ type Props = {
   file: MediaFileFragmentResponse;
 };
 
-export const MediaItemPreviewer: FC<Props> = ({ file }) => {
-  const type = getMediaType(file.filename);
+export const MediaItemPreviewer: FC<Props> = ({ file }: Props) => {
+  const type = getMediaType(file.filename)
+  const av1Src = file.filename.replace(/\.mp4$/, '.av1.mp4')
 
   return (
     <div className={styles.container()}>
@@ -30,8 +32,11 @@ export const MediaItemPreviewer: FC<Props> = ({ file }) => {
                 [styles.video__desktop()]: deviceType === DeviceType.DESKTOP,
                 [styles.video__mobile()]: deviceType === DeviceType.MOBILE,
               })}
-              src={file.filename}
-            />
+              src={av1Src}
+            >
+              <source src={av1Src} type="video/mp4; codecs=av01.0.05M.08,opus" />
+              <source src={file.filename} type="video/mp4" />
+            </video>
           )}
         </GetDeviceType>
       )}
