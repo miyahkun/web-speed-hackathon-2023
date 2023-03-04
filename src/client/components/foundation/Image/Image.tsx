@@ -9,7 +9,7 @@ type Props = Omit<ComponentProps<'img'>, 'className'> & {
 
 export const Image: FC<Props> = ({ fill, ...rest }) => {
   const { src = '' } = rest;
-  const avifSrc = src.replace(/\.jpg$/, '.avif');
+  const avifSrc = src.replace(/^\/images/, '/optimized/images').replace(/\.jpg$/, '.avif');
 
   return (
     <picture>
