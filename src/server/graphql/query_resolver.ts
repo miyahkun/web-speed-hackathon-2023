@@ -19,8 +19,12 @@ type QueryResolver = {
   address: GraphQLFieldResolver<unknown, Context, { zipCode: string }, Address>;
 };
 
+export type GetAddressQueryVariable = {
+  zipCode: string;
+};
+
 export const queryResolver: QueryResolver = {
-  address: (_parent, args) => {
+  address: (_parent, args: GetAddressQueryVariable) => {
     const { zipCode = '' } = args;
     return {
       city: getCity(zipCode),

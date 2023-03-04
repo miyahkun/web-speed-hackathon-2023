@@ -9,7 +9,7 @@ const getAddress = (zipCode: Arg['zipCode']) => {
 };
 
 export const getPrefecture = (zipCode: Arg['zipCode']): string => {
-  return getAddress(zipCode).slice(1, 2).join('');
+  return getAddress(zipCode).slice(0, 1).join('');
 };
 
 export const getCity = (zipCode: Arg['zipCode']): string => {
