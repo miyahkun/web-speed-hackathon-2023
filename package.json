@@ -7,7 +7,7 @@
     "start:client": "cross-env NODE_ENV=development vite build --watch",
     "start:server": "nodemon --watch src/server --ext 'ts,tsx' --exec 'ts-node src/server'",
     "build": "npm-run-all -s build:tsc build:vite",
-    "build:tsc": "tsc",
+    "build:tsc": "tsc --noEmit",
     "build:vite": "vite build",
     "format": "npm-run-all -s format:*",
     "format:prettier": "prettier --write './**/*.{ts,tsx,js,jsx,json}'",
