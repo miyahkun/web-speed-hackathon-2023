@@ -1,5 +1,7 @@
 import { gql } from '@apollo/client';
 
+import type { Address } from '../../model/address';
+
 import type {
   AuthUserFragmentResponse,
   FeatureSectionFragmentResponse,
@@ -78,4 +80,16 @@ export const GetFeatureSectionsQuery = gql`
 `;
 export type GetFeatureSectionsQueryResponse = {
   features: FeatureSectionFragmentResponse[];
+};
+export const GetAddressQuery = gql`
+  query GetAddress($zipCode: String!) {
+    address(zipCode: $zipCode) {
+      zipCode
+      prefecture
+      city
+    }
+  }
+`;
+export type GetAddressQueryResponse = {
+  address: Address;
 };
