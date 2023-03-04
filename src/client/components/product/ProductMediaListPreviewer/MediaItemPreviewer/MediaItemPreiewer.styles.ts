@@ -5,6 +5,7 @@ export const container = () => css`
 `;
 
 export const video = () => css`
+  aspect-ratio: 16 / 9;
   height: auto;
   object-fit: cover;
   width: 100%;
