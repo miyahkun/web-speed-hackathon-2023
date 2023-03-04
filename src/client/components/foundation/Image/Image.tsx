@@ -18,6 +18,7 @@ export const Image: FC<Props> = ({ fill, ...rest }) => {
         className={classNames(styles.container(), {
           [styles.container__fill()]: fill === true,
         })}
+        decoding="async"
         loading="lazy"
         {...rest}
       />
