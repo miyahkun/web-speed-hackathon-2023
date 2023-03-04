@@ -18,4 +18,5 @@ node_modules/
 
 # pnpm output
 ~/
-public
+public/images
+public/optimized
