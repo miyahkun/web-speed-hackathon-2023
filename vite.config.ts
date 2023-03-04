@@ -36,7 +36,7 @@ export default defineConfig(async () => {
       target: 'es2020',
     },
     plugins: [
-      isDev ? visualizer() : undefined,
+      visualizer(),
       react(),
       topLevelAwait(),
       ViteEjsPlugin({
