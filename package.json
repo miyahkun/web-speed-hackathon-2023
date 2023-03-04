@@ -2,7 +2,7 @@
   "private": true,
   "license": "MPL-2.0",
   "scripts": {
-    "start": "./node_modules/.bin/ts-node ./src/server/index.ts",
+    "start": "./node_modules/.bin/ts-node --transpile-only ./src/server/index.ts",
     "start:dev": "npm-run-all -p start:client start:server",
     "start:client": "cross-env NODE_ENV=development vite build --watch",
     "start:server": "nodemon --watch src/server --ext 'ts,tsx' --exec 'ts-node src/server'",
