@@ -25,6 +25,11 @@ export default defineConfig(async () => {
       assetsInlineLimit: 4096,
       cssCodeSplit: true,
       minify: true,
+      rollupOptions: {
+        output: {
+          experimentalMinChunkSize: 40960,
+        },
+      },
       target: 'es2020',
     },
     plugins: [

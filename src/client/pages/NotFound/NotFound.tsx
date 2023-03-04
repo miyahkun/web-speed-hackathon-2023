@@ -5,7 +5,7 @@ import { Layout } from '../../components/application/Layout';
 
 import * as styles from './NotFound.styles';
 
-export const NotFound: FC = () => {
+const NotFound: FC = () => {
   return (
     <>
       <Helmet>
@@ -22,3 +22,5 @@ export const NotFound: FC = () => {
     </>
   );
 };
+
+export default NotFound

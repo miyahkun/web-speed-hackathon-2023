@@ -1,7 +1,7 @@
-import type { FC } from 'react';
+import { type FC, lazy } from 'react';
 
-import { SignInModal } from '../../modal/SignInModal';
-import { SignUpModal } from '../../modal/SignUpModal';
+const SignInModal = lazy(() => import('../../modal/SignInModal/SignInModal'))
+const SignUpModal = lazy(() => import('../../modal/SignUpModal/SignUpModal'))
 import { Providers } from '../Providers';
 import { Routes } from '../Routes';
 
