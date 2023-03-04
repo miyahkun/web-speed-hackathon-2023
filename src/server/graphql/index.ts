@@ -34,12 +34,16 @@ export async function initializeApolloServer(): Promise<ApolloServer<Context>> {
       rootResolve('./src/model/review.graphql'),
       rootResolve('./src/model/shopping_cart_item.graphql'),
       rootResolve('./src/model/user.graphql'),
+      rootResolve('./src/model/address.graphql'),
       rootResolve('./src/server/graphql/mutation.graphql'),
       rootResolve('./src/server/graphql/query.graphql'),
     ].map((filepath) => fs.readFile(filepath, { encoding: 'utf-8' })),
   );
 
   const server = new ApolloServer({
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    playground: true,
     plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
     resolvers: {
       FeatureItem: featureItemResolver,

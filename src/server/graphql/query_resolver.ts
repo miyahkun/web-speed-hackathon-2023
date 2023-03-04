@@ -1,11 +1,14 @@
 import type { Context } from '@apollo/client';
 import type { GraphQLFieldResolver } from 'graphql';
 
+import type { Address } from '../../model/address';
 import { FeatureSection } from '../../model/feature_section';
 import { Product } from '../../model/product';
 import { Recommendation } from '../../model/recommendation';
 import { User } from '../../model/user';
 import { dataSource } from '../data_source';
+
+import { getCity, getPrefecture } from './../zipcode';
 
 type QueryResolver = {
   features: GraphQLFieldResolver<unknown, Context, never, Promise<FeatureSection[]>>;
@@ -13,9 +16,18 @@ type QueryResolver = {
   product: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<Product>>;
   recommendations: GraphQLFieldResolver<unknown, Context, never, Promise<Recommendation[]>>;
   user: GraphQLFieldResolver<unknown, Context, { id: number }, Promise<User>>;
+  address: GraphQLFieldResolver<unknown, Context, { zipCode: string }, Address>;
 };
 
 export const queryResolver: QueryResolver = {
+  address: (_parent, args) => {
+    const { zipCode = '' } = args;
+    return {
+      city: getCity(zipCode),
+      prefecture: getPrefecture(zipCode),
+      zipCode: args.zipCode,
+    };
+  },
   features: () => {
     return dataSource.manager.find(FeatureSection);
   },
