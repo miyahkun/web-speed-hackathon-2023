@@ -32,7 +32,7 @@ export const dataSource = new DataSource({
     FeatureSection,
     FeatureItem,
   ],
-  logging: true,
+  logging: false,
   migrations: [],
   subscribers: [],
   synchronize: true,
