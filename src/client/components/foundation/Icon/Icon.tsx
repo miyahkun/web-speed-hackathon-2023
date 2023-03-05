@@ -1,18 +1,27 @@
 import classNames from 'classnames';
 import type { FC } from 'react';
-import * as Icons from 'react-icons/fa';
+import type Icons from 'react-icons/fa';
+import { FaArrowLeft,FaArrowRight, FaCheckCircle, FaPlay, FaShoppingCart, FaUser } from 'react-icons/fa';
 
 import * as styles from './Icon.styles';
 
+type IconName = keyof typeof Icons
+
 type Props = {
-  type: keyof typeof Icons;
+  type: IconName;
   width: number;
   height: number;
   color: string;
 };
 
+const icons = {
+  FaArrowLeft, FaArrowRight, FaCheckCircle, FaPlay, FaShoppingCart, FaUser
+}
+
 export const Icon: FC<Props> = ({ color, height, type, width }) => {
-  const Icon = Icons[type];
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
+  const Icon = icons[type];
   return (
     <span className={classNames(type, styles.container({ color, height, width }))}>
       <Icon />
