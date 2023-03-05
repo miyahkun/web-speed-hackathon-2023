@@ -16,10 +16,6 @@ export const MediaItem: FC<Props> = ({ file }) => {
   const imgSrc = file.filename
   const mediaType = getMediaType(imgSrc)
 
-  if (imgSrc === undefined) {
-    return null;
-  }
-
   return (
     <div className={styles.container()}>
       <Image fill mediaType={mediaType} src={imgSrc} />

@@ -13,11 +13,13 @@ export const container = () => css`
 export const productName = () => css`
   font-size: 1.5rem;
   font-weight: 700;
+  min-height: 36px;
 `;
 
 export const productDescription = () => css`
   font-size: 0.875rem;
   margin-top: 8px;
+  min-height: 210px;
 `;
 
 export const priceWrapper = () => css`
@@ -26,6 +28,7 @@ export const priceWrapper = () => css`
   display: flex;
   flex-direction: column;
   margin-top: 24px;
+  min-height: 36px;
 `;
 
 export const priceWithoutOffer = () => css`

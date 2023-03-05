@@ -10,3 +10,11 @@ export const container__fill = () => css`
   position: absolute;
   width: 100%;
 `;
+
+export const placeholder = () => css`
+  background: lightgray;
+`;
+
+export const loaded = () => css`
+  background: none;
+`;

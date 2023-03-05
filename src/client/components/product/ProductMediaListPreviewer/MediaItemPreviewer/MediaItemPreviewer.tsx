@@ -10,16 +10,16 @@ import { Image } from '../../../foundation/Image';
 import * as styles from './MediaItemPreiewer.styles';
 
 type Props = {
-  file: MediaFileFragmentResponse;
+  file?: MediaFileFragmentResponse;
 };
 
 export const MediaItemPreviewer: FC<Props> = ({ file }: Props) => {
-  const type = getMediaType(file.filename)
-  const av1Src = file.filename.replace(/\.mp4$/, '.av1.mp4')
+  const type = getMediaType(file?.filename || '')
+  const av1Src = file?.filename.replace(/\.mp4$/, '.av1.mp4')
 
   return (
     <div className={styles.container()}>
-      {type === 'image' && <Image fill src={file.filename} />}
+      {type === 'image' && <Image fill src={file?.filename} />}
       {type === 'video' && (
         <GetDeviceType>
           {({ deviceType }) => (
@@ -35,7 +35,7 @@ export const MediaItemPreviewer: FC<Props> = ({ file }: Props) => {
               src={av1Src}
             >
               <source src={av1Src} type="video/mp4; codecs=av01.0.05M.08,opus" />
-              <source src={file.filename} type="video/mp4" />
+              <source src={file?.filename} type="video/mp4" />
             </video>
           )}
         </GetDeviceType>

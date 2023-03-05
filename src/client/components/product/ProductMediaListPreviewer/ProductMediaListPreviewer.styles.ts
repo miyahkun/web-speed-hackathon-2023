@@ -10,6 +10,7 @@ export const itemListWrapper = () => css`
   display: grid;
   overflow-x: scroll;
   place-items: center;
+  min-height: 48px;
 `;
 
 export const itemList = () => css`
