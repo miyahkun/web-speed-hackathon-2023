@@ -8,8 +8,6 @@ import topLevelAwait from 'vite-plugin-top-level-await';
 
 import { getFileList } from './tools/get_file_list';
 
-const isDev = process.env.NODE_ENV === 'development';
-
 const publicDir = path.resolve(__dirname, './public');
 const getPublicFileList = async (targetPath: string) => {
   const filePaths = await getFileList(targetPath);
@@ -20,7 +18,8 @@ const getPublicFileList = async (targetPath: string) => {
   return publicFiles;
 };
 
-export default defineConfig(async () => {
+export default defineConfig(async ({ mode }) => {
+  console.log('mode', mode);
   const videos = await getPublicFileList(path.resolve(publicDir, 'videos'));
 
   return {
@@ -36,7 +35,13 @@ export default defineConfig(async () => {
       target: 'es2020',
     },
     plugins: [
-      visualizer(),
+      mode === 'analyze' &&
+        visualizer({
+          brotliSize: true,
+          filename: 'dist/stats.html',
+          gzipSize: true,
+          open: true,
+        }),
       react(),
       topLevelAwait(),
       ViteEjsPlugin({
