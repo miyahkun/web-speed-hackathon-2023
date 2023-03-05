@@ -4,6 +4,7 @@ import { ApolloServer } from '@apollo/server';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 
 import type { Context } from '../context';
+import { perfLogger } from '../utils/logger';
 import { rootResolve } from '../utils/root_resolve';
 
 import { featureItemResolver } from './feature_item_resolver';
@@ -44,7 +45,7 @@ export async function initializeApolloServer(): Promise<ApolloServer<Context>> {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     playground: true,
-    plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true })],
+    plugins: [ApolloServerPluginLandingPageLocalDefault({ includeCookies: true }), perfLogger],
     resolvers: {
       FeatureItem: featureItemResolver,
       FeatureSection: featureSectionResolver,
