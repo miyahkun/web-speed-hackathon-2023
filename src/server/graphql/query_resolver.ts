@@ -32,27 +32,27 @@ export const queryResolver: QueryResolver = {
       zipCode: args.zipCode,
     };
   },
-  features: () => {
-    return dataSource.manager.find(FeatureSection);
+  features: async () => {
+    return await dataSource.manager.find(FeatureSection);
   },
   me: async (_parent, _args, { session }) => {
     if (session['userId'] == null) {
       return null;
     }
-    return dataSource.manager.findOneOrFail(User, {
+    return await dataSource.manager.findOneOrFail(User, {
       where: { id: session['userId'] },
     });
   },
-  product: (_parent, args) => {
-    return dataSource.manager.findOneOrFail(Product, {
+  product: async (_parent, args) => {
+    return await dataSource.manager.findOneOrFail(Product, {
       where: { id: args.id },
     });
   },
-  recommendations: () => {
-    return dataSource.manager.find(Recommendation);
+  recommendations: async () => {
+    return await dataSource.manager.find(Recommendation);
   },
-  user: (_parent, args) => {
-    return dataSource.manager.findOneOrFail(User, {
+  user: async (_parent, args) => {
+    return await dataSource.manager.findOneOrFail(User, {
       where: { id: args.id },
     });
   },

@@ -7,22 +7,22 @@ import { dataSource } from '../data_source';
 import type { GraphQLModelResolver } from './model_resolver';
 
 export const userResolver: GraphQLModelResolver<User> = {
-  orders: (parent) => {
-    return dataSource.manager.find(Order, {
+  orders: async (parent) => {
+    return await dataSource.manager.find(Order, {
       where: {
         user: parent,
       },
     });
   },
-  profile: (parent) => {
-    return dataSource.manager.findOneOrFail(Profile, {
+  profile: async (parent) => {
+    return await dataSource.manager.findOneOrFail(Profile, {
       where: {
         user: parent,
       },
     });
   },
-  reviews: (parent) => {
-    return dataSource.manager.find(Review, {
+  reviews: async (parent) => {
+    return await dataSource.manager.find(Review, {
       where: {
         user: parent,
       },

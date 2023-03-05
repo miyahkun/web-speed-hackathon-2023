@@ -7,22 +7,22 @@ import { dataSource } from '../data_source';
 import type { GraphQLModelResolver } from './model_resolver';
 
 export const productResolver: GraphQLModelResolver<Product> = {
-  media: (parent) => {
-    return dataSource.manager.find(ProductMedia, {
+  media: async (parent) => {
+    return await dataSource.manager.find(ProductMedia, {
       where: {
         product: parent,
       },
     });
   },
-  offers: (parent) => {
-    return dataSource.manager.find(LimitedTimeOffer, {
+  offers: async (parent) => {
+    return await dataSource.manager.find(LimitedTimeOffer, {
       where: {
         product: parent,
       },
     });
   },
-  reviews: (parent) => {
-    return dataSource.manager.find(Review, {
+  reviews: async (parent) => {
+    return await dataSource.manager.find(Review, {
       where: {
         product: parent,
       },

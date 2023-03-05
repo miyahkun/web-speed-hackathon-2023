@@ -5,8 +5,8 @@ import { dataSource } from '../data_source';
 import type { GraphQLModelResolver } from './model_resolver';
 
 export const featureSectionResolver: GraphQLModelResolver<FeatureSection> = {
-  items: (parent) => {
-    return dataSource.manager.find(FeatureItem, {
+  items: async (parent) => {
+    return await dataSource.manager.find(FeatureItem, {
       relations: {
         product: true,
       },
